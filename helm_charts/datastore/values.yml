@@ -1,0 +1,16 @@
+---
+datastore:
+  pg:
+    enabled: true
+  minio:
+    enabled: true
+  redis:
+    enabled: true
+  pgadmin4:
+    enabled: true
+  redisinsight:
+    enabled: true
+
+pgadmin4:
+  persistentVolume:
+    size: 512Mi
