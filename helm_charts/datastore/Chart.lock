@@ -1,7 +1,7 @@
 dependencies:
 - name: postgresql-ha
   repository: https://charts.bitnami.com/bitnami
-  version: 13.3.0
+  version: 13.3.1
 - name: minio
   repository: https://charts.bitnami.com/bitnami
   version: 13.5.1
@@ -10,9 +10,12 @@ dependencies:
   version: 18.14.0
 - name: pgadmin4
   repository: https://helm.runix.net
-  version: 1.23.3
+  version: 1.23.4
 - name: redisinsight
   repository: ""
   version: 0.1.0
-digest: sha256:781fe0b09e5d7247757db45e3d1aa8e237ab04ccb348974ffc13621fab9273a3
-generated: "2024-02-17T21:54:09.579542976+01:00"
+- name: common
+  repository: oci://registry-1.docker.io/bitnamicharts
+  version: 2.19.0
+digest: sha256:46d74dcb69af67ef8d7ad35e725d593d69ad0d792c58ac39174a8398510da543
+generated: "2024-03-16T01:21:15.484188854+01:00"

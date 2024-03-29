@@ -11,6 +11,53 @@ datastore:
   redisinsight:
     enabled: true
 
+minio:
+  service:
+    ports:
+      console: 9001
+
+gatewayHttpRoutes:
+  enabled: false
+  minioConsole:
+    enabled: true
+    parentRefs: []
+    hostnames: []
+    labels: {}
+    annotations: {}
+  redisInsight:
+    enabled: true
+    parentRefs: []
+    hostnames: []
+    labels: {}
+    annotations: {}
+  pgadmin4:
+    enabled: true
+    parentRefs: []
+    hostnames: []
+    labels: {}
+    annotations: {}
+
+
+## annotations
+# commonAnnotations: {}
+
+## commonLabels Add labels to all the deployed resources
+commonLabels: {}
+
+
 pgadmin4:
   persistentVolume:
     size: 512Mi
+
+## @param nameOverride String to partially override common.names.fullname template (will maintain the release name)
+##
+nameOverride: ""
+## @param namespaceOverride String to fully override common.names.namespace
+##
+namespaceOverride: ""
+## @param fullnameOverride String to fully override common.names.fullname template
+##
+fullnameOverride: ""
+## @param commonLabels Labels to add to all deployed objects
+##
+

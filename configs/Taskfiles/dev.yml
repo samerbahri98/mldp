@@ -1,0 +1,38 @@
+---
+version: '3'
+
+tasks:
+
+  kind:kustomize:
+    dir: /{{.GIT_ROOT_DIR}}/configs/deps
+    cmd: kubectl apply -k . --wait
+
+  kind:helmfile:
+    dir: /{{.GIT_ROOT_DIR}}/configs/deps
+    cmd: helmfile apply -f helmfile.d --wait
+  
+  kind:metallb:
+    env:
+      METALLB_PREFIX:
+        sh: docker network inspect kind | jq '.[0].IPAM.Config[0].Gateway' | tr -d \" | sed -e "s/\.0\.1//"
+    dir: /{{.GIT_ROOT_DIR}}/configs/deps
+    cmds:
+      - task dev:kind:kustomize
+      - kubectl wait --namespace metallb-system --for=condition=ready pod --selector=app=metallb --timeout=90s
+      - envsubst < ./manifests/metallb.yaml | kubectl apply -f -
+
+  kind:prepare:
+    deps:
+      - kind:kustomize
+      - kind:helmfile
+
+  kind:create:
+    cmd: kind create cluster --config {{.GIT_ROOT_DIR}}/configs/kind/cluster-local.yml
+  
+  kind:up:
+    deps:
+      - kind:create
+      - kind:prepare
+
+  kind:down:
+    cmd: kind delete cluster --name mldp

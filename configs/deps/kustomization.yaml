@@ -1,0 +1,6 @@
+---
+resources:
+  - ./manifests/namespaces.yaml
+  - ./crds/gateway.yaml
+  # - ./crds/knative.yaml
+  - ./crds/metallb.yaml

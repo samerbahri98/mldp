@@ -1,0 +1,25 @@
+---
+repositories:
+  - name: istio
+    url: https://istio-release.storage.googleapis.com/charts
+  - name: crossplane
+    url: https://charts.crossplane.io/stable
+releases:
+  - name: istio-base
+    chart: istio/base
+    namespace: istio-system
+    version: '~1.20.0'
+    set:
+      - name: defaultRevision
+        value: default
+  - name: istiod
+    chart: istio/istiod
+    version: '~1.20.0'
+    namespace: istio-system
+  - name: crossplane
+    chart: crossplane/crossplane
+    atomic: true
+    version: '~1.15.0'
+    cleanupOnFail: true
+    createNamespace: true
+    namespace: deps

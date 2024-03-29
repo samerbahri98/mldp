@@ -1,0 +1,18 @@
+---
+version: '3'
+
+env:
+  UID:
+    sh: id -u
+  GID:
+    sh: id -g
+  GIT_ROOT_DIR:
+    sh: git rev-parse --show-toplevel
+  GIT_COMMIT_HASH:
+    sh: git log -n 1 --format=%h
+  GIT_BRANCH:
+    sh: git rev-parse --abbrev-ref HEAD
+
+includes:
+  dev:
+    taskfile: ./configs/Taskfiles/dev.yml
